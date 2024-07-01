@@ -1,6 +1,6 @@
 pandas
 numpy
-sklean
+sklearn
 json
 math
 requests
