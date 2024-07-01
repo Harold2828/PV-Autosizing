@@ -1,3 +1,7 @@
 Data/*.csv
 Data/*.xls
 Data/*.xls
+__pycache__
+Models/__pycache__
+Models/.ipynb*
+.ipynb*
