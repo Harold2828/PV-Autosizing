@@ -43,10 +43,10 @@ class AssistantTool:
 
             #Units per year
             total_energy = project["estimated_power_produced_annually"] / (project["percentage_of_electrical_energy_supplied"]/100)
-            #Units per day
-            total_energy_day = total_energy/365 #kWh
+            #Units per hour
+            total_energy_day = total_energy/8760 #kWh
 
-            peak_power = total_energy_day/project['average_solar_hours'] * performance_ratio * 1000 #w
+            peak_power = total_energy_day/(project['average_solar_hours'] * performance_ratio * 1000) #w
 
             nominal_inverter_power = inverter['Vdcmax'] * inverter['Idcmax']
             number_of_inverters = peak_power/nominal_inverter_power
@@ -55,7 +55,7 @@ class AssistantTool:
                 raise Exception("The inverter have more capacity than the necessary")
 
 
-            nominal_power = solar_panel['Impo'] * solar_panel['Vmpo']
+            nominal_power = solar_panel['Isco'] * solar_panel['Voco']
 
             sizing["total_number_of_panels"] = math.ceil(peak_power/nominal_power)
             sizing["panels_in_parallel"]  = math.ceil(inverter['Vdcmax']/solar_panel['Voco'])
